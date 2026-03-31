@@ -1,5 +1,5 @@
 # Test Case 3: Login User with incorrect email and password
-from playwright.sync_api import Page, expect, Playwright
+from playwright.sync_api import expect
 
 
 def test_login_User_with_incorrect_email_and_password(go_to_page_login, fake_credentials):

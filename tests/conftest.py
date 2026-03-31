@@ -20,7 +20,7 @@ def go_to_page_login(page: Page):
     return page
 
 
-@pytest.fixture()
+@pytest.fixture
 def fake_credentials():
     return {
         "email": "flase@gmail.com",
@@ -28,7 +28,15 @@ def fake_credentials():
     }
 
 
-@pytest.fixture()
+@pytest.fixture
+def credentials_name_email():
+    return {
+        "name": "09w0823@Freedom",
+        "email": "freedomvision@gmail.com",
+    }
+
+
+@pytest.fixture
 def credentials_valid():
     return {
         "email": "freedomvision@gmail.com",
@@ -36,7 +44,7 @@ def credentials_valid():
     }
 
 
-# firefox
+# ---------------------  firefox  ----------------------------------
 @pytest.fixture
 def test_login_User_firefox_consent(playwright: Playwright):
     firefoxBrowser = playwright.firefox.launch(headless=False)

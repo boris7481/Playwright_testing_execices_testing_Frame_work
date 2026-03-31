@@ -1,8 +1,8 @@
 from playwright.sync_api import expect
 
 
-def test_Verify_All_Products_and_product_detail_page(verify_all_product_fixture):
-    page = verify_all_product_fixture
+def test_Verify_All_Products_and_product_detail_page(go_to_page_login):
+    page = go_to_page_login
     page.get_by_role("link", name="products").click()
     expect(page.get_by_text("All Products")).to_be_visible()
     expect(page.get_by_text("Category")).to_be_visible()
