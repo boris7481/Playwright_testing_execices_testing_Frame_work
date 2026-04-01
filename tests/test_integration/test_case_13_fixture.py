@@ -7,10 +7,8 @@ import time
 
 # ---#termes = ID ,   .terms = class
 # Test Case 6: Contact Us Form
-def test_Verify_Product_quantity_in_Cart(page: Page):
-    page.goto("https://www.automationexercise.com/")
-    expect(page.get_by_text("Video Tutorials")).to_be_visible()
-    page.get_by_role("button", name="Einwilligen").click()
+def test_Verify_Product_quantity_in_Cart(go_to_page_einwilligen):
+    page = go_to_page_einwilligen
     page.get_by_role("link", name=" Products").click()
     page.get_by_role("link", name="View Product").first.click()
     expect(page.get_by_text("Blue Top")).to_be_visible()
@@ -20,19 +18,14 @@ def test_Verify_Product_quantity_in_Cart(page: Page):
     page.get_by_role("button", name="Add to cart").click()
     page.get_by_role("link", name="View Cart").click()
     expect(page.locator(".cart_quantity", has_text="4"))
-
 
 
 #   blue_top = page.locator(".product-image-wrapper").filter(has_text="Blue Top").first
 #   blue_top.hover()
 #   blue_top.locator(".add-to-cart").first.click()
 
-def test_Verify_Product_quantity_in_Cart_firefox(playwright: Playwright):
-    firefoxBrowser = playwright.firefox.launch(headless=False)
-    page = firefoxBrowser.new_page()
-    page.goto("https://www.automationexercise.com/")
-    expect(page.get_by_text("Video Tutorials")).to_be_visible()
-    page.get_by_role("button", name="consent").click()
+def test_Verify_Product_quantity_in_Cart_firefox(test_login_User_firefox_consent):
+    page = test_login_User_firefox_consent
     page.get_by_role("link", name=" Products").click()
     page.get_by_role("link", name="View Product").first.click()
     expect(page.get_by_text("Blue Top")).to_be_visible()
@@ -42,5 +35,4 @@ def test_Verify_Product_quantity_in_Cart_firefox(playwright: Playwright):
     page.get_by_role("button", name="Add to cart").click()
     page.get_by_role("link", name="View Cart").click()
     expect(page.locator(".cart_quantity", has_text="4"))
-    time.sleep(4)
-    firefoxBrowser.close()
+

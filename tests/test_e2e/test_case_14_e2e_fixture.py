@@ -65,8 +65,8 @@ def test_Place_Order_Register_while_Checkout(go_to_page_einwilligen):
 
 # firefox
 
-def test_Place_Order_Register_while_Checkout_firefox(test_login_User_firefox_consent):
-    page = test_login_User_firefox_consent
+def test_Place_Order_Register_while_Checkout_firefox(go_to_page_einwilligen):
+    page = go_to_page_einwilligen
     page.get_by_role("link", name=" Products").click()
     page.get_by_role("link", name="View Product").first.click()
     expect(page.get_by_text("Category: Women > Tops")).to_be_visible()

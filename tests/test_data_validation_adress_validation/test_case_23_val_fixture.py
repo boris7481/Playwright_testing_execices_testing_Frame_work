@@ -1,6 +1,7 @@
-# Test Case 14: Place Order: Register while Checkout
+# Test Case 23: Verify address details in checkout page
 
-from playwright.sync_api import expect
+# Test Case 14: Place Order: Register while Checkout
+from playwright.sync_api import Page, expect, Playwright
 
 import time
 from faker import Faker
@@ -9,17 +10,9 @@ faker = Faker()
 email = faker.email()
 
 
-# ---#termes = ID ,   .terms = class
-# Test Case 6: Contact Us Form
-def test_Place_Order_Register_while_Checkout(go_to_page_einwilligen):
+# ---#termes = ID ,   .terms = class      09w0823@Freedom
+def test_Verify_address_details_in_checkout_page(go_to_page_einwilligen):
     page = go_to_page_einwilligen
-    page.get_by_role("link", name=" Products").click()
-    page.get_by_role("link", name="View Product").first.click()
-    expect(page.get_by_text("Category: Women > Tops")).to_be_visible()
-    page.get_by_role("button", name="Add to cart").click()
-    page.get_by_role("link", name="View Cart").click()
-    page.get_by_text("Proceed To Checkout").click()
-    page.get_by_role("link", name="Register / Login").click()
     page.get_by_role("link", name="Signup / Login").click()
     page.get_by_text("New User Signup!").is_visible()
     page.locator('[data-qa="signup-name"]').fill("09w0823@Freedom")
@@ -47,33 +40,27 @@ def test_Place_Order_Register_while_Checkout(go_to_page_einwilligen):
     expect(page.get_by_text("ACCOUNT CREATED!")).to_be_visible()
     page.locator("[data-qa='continue-button']").click()
     expect(page.get_by_text("Logged in as 09w0823@Freedom")).to_be_visible()
+    page.get_by_role("link", name=" Products").click()
+    blue_top = page.locator(".product-image-wrapper").filter(has_text="Blue Top").first
+    blue_top.hover()
+    blue_top.locator(".add-to-cart").first.click()
+    page.get_by_role("button", name="Continue Shopping").click()
+    blue_top = page.locator(".product-image-wrapper").filter(has_text="Men Tshirt").first
+    blue_top.hover()
+    blue_top.locator(".add-to-cart").first.click()
+    page.get_by_role("button", name="Continue Shopping").click()
+    page.get_by_role("link", name="Cart").click()
+    expect(page.get_by_text("Blue Top")).to_be_visible()
+    expect(page.get_by_text("Men Tshirt")).to_be_visible()
     page.get_by_role("link", name="Cart").click()
     page.get_by_text("Proceed To Checkout").click()
     expect(page.get_by_text("Address Details")).to_be_visible()
-    expect(page.get_by_text("Review Your Order")).to_be_visible()
-    page.locator(".form-control").fill("everything is op")
-    page.get_by_role("link", name="Place Order").click()
-    page.locator("[data-qa='name-on-card']").fill("Master Card")
-    page.locator("[data-qa='card-number']").fill("10-2-30")
-    page.locator("[data-qa='cvc']").fill("200")
-    page.locator("[data-qa='expiry-month']").fill("10-02-30")
-    page.locator("[data-qa='expiry-year']").fill("2030")
-    page.locator("[data-qa='pay-button']").click()
-    expect(page.get_by_text("Congratulations! Your order has been confirmed!")).to_be_visible()
-    page.locator("[data-qa='continue-button']").click()
+    expect(page.locator(".address_delivery = .address_invoice"))
 
 
 # firefox
-
-def test_Place_Order_Register_while_Checkout_firefox(test_login_User_firefox_consent):
+def test_Verify_address_details_in_checkout_page_forefox(test_login_User_firefox_consent):
     page = test_login_User_firefox_consent
-    page.get_by_role("link", name=" Products").click()
-    page.get_by_role("link", name="View Product").first.click()
-    expect(page.get_by_text("Category: Women > Tops")).to_be_visible()
-    page.get_by_role("button", name="Add to cart").click()
-    page.get_by_role("link", name="View Cart").click()
-    page.get_by_text("Proceed To Checkout").click()
-    page.get_by_role("link", name="Register / Login").click()
     page.get_by_role("link", name="Signup / Login").click()
     page.get_by_text("New User Signup!").is_visible()
     page.locator('[data-qa="signup-name"]').fill("09w0823@Freedom")
@@ -101,18 +88,20 @@ def test_Place_Order_Register_while_Checkout_firefox(test_login_User_firefox_con
     expect(page.get_by_text("ACCOUNT CREATED!")).to_be_visible()
     page.locator("[data-qa='continue-button']").click()
     expect(page.get_by_text("Logged in as 09w0823@Freedom")).to_be_visible()
+    page.get_by_role("link", name=" Products").click()
+    blue_top = page.locator(".product-image-wrapper").filter(has_text="Blue Top").first
+    blue_top.hover()
+    blue_top.locator(".add-to-cart").first.click()
+    page.get_by_role("button", name="Continue Shopping").click()
+    blue_top = page.locator(".product-image-wrapper").filter(has_text="Men Tshirt").first
+    blue_top.hover()
+    blue_top.locator(".add-to-cart").first.click()
+    page.get_by_role("button", name="Continue Shopping").click()
+    page.get_by_role("link", name="Cart").click()
+    expect(page.get_by_text("Blue Top")).to_be_visible()
+    expect(page.get_by_text("Men Tshirt")).to_be_visible()
     page.get_by_role("link", name="Cart").click()
     page.get_by_text("Proceed To Checkout").click()
     expect(page.get_by_text("Address Details")).to_be_visible()
-    expect(page.get_by_text("Review Your Order")).to_be_visible()
-    page.locator(".form-control").fill("everything is op")
-    page.get_by_role("link", name="Place Order").click()
-    page.locator("[data-qa='name-on-card']").fill("Master Card")
-    page.locator("[data-qa='card-number']").fill("10-2-30")
-    page.locator("[data-qa='cvc']").fill("200")
-    page.locator("[data-qa='expiry-month']").fill("10-02-30")
-    page.locator("[data-qa='expiry-year']").fill("2030")
-    page.locator("[data-qa='pay-button']").click()
-    expect(page.get_by_text("Congratulations! Your order has been confirmed!")).to_be_visible()
-    page.locator("[data-qa='continue-button']").click()
+    expect(page.locator(".address_delivery = .address_invoice"))
 
