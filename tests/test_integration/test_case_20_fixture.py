@@ -1,7 +1,7 @@
 # Test Case 20: Search Products and Verify Cart After Login
 import time
 
-from playwright.sync_api import Page, expect, Playwright
+from playwright.sync_api import expect
 
 
 # ---#termes = ID ,   .terms = class      09w0823@Freedom
@@ -24,7 +24,6 @@ def test_Search_Products_and_Verify_Cart_After_Login(go_to_page_einwilligen):
     page.locator('[data-qa="login-button"]').click()
     page.get_by_role("link", name="Cart").click()
     expect(page.get_by_text("Premium Polo T-Shirts")).to_be_visible()
-
 
 
 # firefox
