@@ -110,4 +110,3 @@ def test_Verify_address_details_in_checkout_page_forefox(playwright: Playwright)
     page.get_by_text("Proceed To Checkout").click()
     expect(page.get_by_text("Address Details")).to_be_visible()
     expect(page.locator(".address_delivery = .address_invoice"))
-
