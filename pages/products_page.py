@@ -28,3 +28,20 @@ class ProductsPage:
         self.page.get_by_placeholder("Search Product").fill("short")
         self.page.locator("#submit_search").click()
         expect(self.page.get_by_text("SEARCHED PRODUCTS")).to_be_visible()
+
+    def navigate_to_see_all_products_page_and_seach_product(self):
+        self.page.get_by_role("link", name="products").click()
+        expect(self.page.get_by_text("All Products")).to_be_visible()
+        expect(self.page.get_by_text("All Products")).to_be_visible()
+        self.page.get_by_placeholder("Search Product").fill("short")
+        self.page.locator("#submit_search").click()
+        expect(self.page.get_by_text("SEARCHED PRODUCTS")).to_be_visible()
+
+
+    def navigate_to_see_all_products_page_and_see_brands_product(self):
+        self.page.get_by_role("link", name="Polo").click()
+        expect(self.page.get_by_text("Brand - Polo Products")).to_be_visible()
+        self.page.get_by_role("link", name="H&M").click()
+        expect(self.page.get_by_text("Brand - H&M Products")).to_be_visible()
+
+

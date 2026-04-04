@@ -23,7 +23,7 @@ from pages.products_page import ProductsPage
 def test_Search_Product(page: Page):
     # home page
     homepage = HomePage(page)
-    homepage.navigate()
+    homepage.navigate_without_login()
     homepage.selectordernavigationlink()
     # product page
     product_search = ProductsPage(page)

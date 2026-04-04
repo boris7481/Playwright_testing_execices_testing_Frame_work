@@ -2,7 +2,7 @@ from playwright.sync_api import Page, expect, Playwright
 from pathlib import Path
 from pages.contact_us_form_page import ContactUsPage
 from pages.home_page import HomePage
-from pages.login_page  import LoginPage
+from pages.login_page import LoginPage
 
 file_path = Path(r"C:\Users\boris\Desktop\test_document_contact_us_page.txt")
 
@@ -11,13 +11,12 @@ file_path = Path(r"C:\Users\boris\Desktop\test_document_contact_us_page.txt")
 
 
 def test_Contact_Us_Form(page: Page, credentials_valid):
-
     user_name = credentials_valid["email"]
     password = credentials_valid["password"]
 
     # home page
     homepage = HomePage(page)
-    homepage.navigate()
+    homepage.navigate_without_login()
     homepage.selectordernavigationlink()
 
     # login page with valid credentials
@@ -29,7 +28,7 @@ def test_Contact_Us_Form(page: Page, credentials_valid):
     ContactUS.fill_infos()
 
 
-#Firefox : I did not implemnt the POM here only the fixture is use
+# Firefox : I did not implemnt the POM here only the fixture is use
 def test_Contact_Us_Form_firefox(test_login_User_firefox_login, credentials_valid):
     page = test_login_User_firefox_login
     page.locator('[data-qa="login-email"]').fill(credentials_valid["email"])

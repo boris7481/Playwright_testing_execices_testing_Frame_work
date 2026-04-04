@@ -14,8 +14,10 @@ def test_login_User_with_incorrect_email_and_password(page: Page, fake_credentia
 
     # home page
     homepage = HomePage(page)
-    homepage.navigate()
+    homepage.navigate_without_login()
     homepage.selectordernavigationlink()
+
+
 
     # login page
     loginPage = LoginPage(page)  # object for loginPage class

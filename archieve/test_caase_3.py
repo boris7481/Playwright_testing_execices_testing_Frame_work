@@ -18,7 +18,7 @@ def test_login_User_with_incorrect_email_and_password(page: Page):
     page.locator('[data-qa="login-password"]').fill("Freedom95")
     page.locator('[data-qa="login-button"]').click()
     expect(page.get_by_text("Your email or password is incorrect!")).to_be_visible()
-    time.sleep(4)
+    time.sleep(2)
 
 
 # Firefox
