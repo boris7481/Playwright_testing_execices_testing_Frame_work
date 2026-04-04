@@ -10,12 +10,11 @@ class HomePage:
         self.page.get_by_role("button", name="Einwilligen").click()
         expect(self.page.get_by_text("Video Tutorials")).to_be_visible()
 
-
-
     def selectordernavigationlink(self):
-      #  self.page.get_by_role("button", name="Einwilligen").click()
+        #  self.page.get_by_role("button", name="Einwilligen").click()
         self.page.get_by_role("link", name="Signup / Login").click()
-      #  expect(self.page.get_by_text("Video Tutorials")).to_be_visible()
+
+    #  expect(self.page.get_by_text("Video Tutorials")).to_be_visible()
 
     def view_women_items(self):
         self.page.get_by_role("link", name="Women").click()
@@ -28,4 +27,17 @@ class HomePage:
     def navigate_and_click_of_product_link(self):
         self.page.get_by_role("link", name=" Products").click()
 
+    def navigate_and_click_of_cart_link(self):
+        self.page.get_by_role("link", name=" Products").click()
 
+    def navigate_and_click_of_view_home_first_product_link(self):
+        self.page.get_by_role("link", name="View Product").first.click()
+
+
+
+    def test_Add_to_cart_from_Recommended_items_method(self):
+        expect(self.page.get_by_text("recommended items")).to_be_visible()
+        add_btn = self.page.locator('[data-product-id="4"]:visible').first  # --> More precise
+        add_btn.click()
+        self.page.get_by_text("View Cart").click()
+        expect(self.page.get_by_text("Stylish Dress")).to_be_visible()
