@@ -23,8 +23,8 @@ def go_to_page_login(page: Page):
 @pytest.fixture
 def fake_credentials():
     return {
-        "email": "flase@gmail.com",
-        "password": "Freedom95",
+        "email_fake": "flase@gmail.com",
+        "password_fake": "Freedom95_fake",
     }
 
 
