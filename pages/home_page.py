@@ -2,7 +2,7 @@ from playwright.sync_api import expect
 
 
 class HomePage:
-
+# nouvelle modification de boris tacheuno
     def __init__(self, page):
         self.page = page
 
