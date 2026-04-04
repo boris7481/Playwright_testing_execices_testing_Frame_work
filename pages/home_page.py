@@ -8,7 +8,8 @@ class HomePage:
 # ceci est un commentaire pour tester le git pull
     def navigate(self):
         self.page.goto("https://www.automationexercise.com/")
-
+# un autre teste pouer tester un pull 
+    # un deuxieme teste pour tester un pull 
     def selectordernavigationlink(self):
         self.page.get_by_role("button", name="Einwilligen").click()
         self.page.get_by_role("link", name="Signup / Login").click()
