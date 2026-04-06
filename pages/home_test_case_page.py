@@ -1,7 +1,7 @@
 from playwright.sync_api import expect
 
 
-class TestCasePage:
+class HomeTestCasePageObject:
     def __init__(self, page):
         self.page = page
 

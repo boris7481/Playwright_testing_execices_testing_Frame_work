@@ -20,6 +20,16 @@ def go_to_page_login(page: Page):
     return page
 
 
+# request in bracket help us to access your global environment variable
+# as well as your local pytest foction variable
+# Globla variable (for example to control in which browser your test should run)
+# the param here refert to user_credentials_valid in the bracket of the function
+# scope = session : the fixture will be execute once before full execution of the test beginn
+@pytest.fixture(scope="session")
+def user_credentials_valid(request):
+    return request.param
+
+
 @pytest.fixture
 def fake_credentials():
     return {
@@ -52,7 +62,8 @@ def test_login_User_firefox_consent(playwright: Playwright):
     page.goto("https://www.automationexercise.com/")
     expect(page.get_by_text("Video Tutorials")).to_be_visible()
     page.get_by_role("button", name="consent").click()
-    return page
+    yield page
+    firefoxBrowser.close()
 
 
 @pytest.fixture
@@ -64,4 +75,5 @@ def test_login_User_firefox_login(playwright: Playwright):
     page.get_by_role("button", name="consent").click()
     page.get_by_role("link", name="Signup / Login").click()
     expect(page.get_by_text("Login to your account")).to_be_visible()
-    return page
+    yield page
+    firefoxBrowser.close()

@@ -1,3 +1,4 @@
+import pytest
 from playwright.sync_api import Page, expect, Playwright
 
 import time
@@ -9,7 +10,7 @@ from pages.login_page import LoginPage
 # Test Case 5: Register User with existing email
 
 # ---#termes = ID ,   .terms = class
-
+@pytest.mark.smoke
 def test_Register_User_with_existing_emai(page: Page, credentials_name_email):
     user_name = credentials_name_email["name"]
     email = credentials_name_email["email"]
